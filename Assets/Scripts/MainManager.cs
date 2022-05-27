@@ -24,9 +24,8 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MenuManager.Instance.LoadData();
-        NameText.text = "Name:" + MenuManager.Instance.playerName;
-        highScoreText.text = "HighScore: "+MenuManager.Instance.highScore;
+        addScoreAndName();
+       
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -71,13 +70,32 @@ public class MainManager : MonoBehaviour
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
+        int presentHigh = MenuManager.Instance.highScore;
+        if(m_Points > presentHigh){
+            highScoreText.text = $"HighScore: {presentHigh}";
+        }
     }
 
     public void GameOver()
     {
-        MenuManager.Instance.highScore = m_Points;
+       checkHighScore();
        // MenuManager.Instance.saveData();
         m_GameOver = true;
         GameOverText.SetActive(true);
+    }
+
+    void addScoreAndName(){
+        MenuManager.Instance.LoadData();
+        NameText.text = "Name:" + MenuManager.Instance.playerName;
+        highScoreText.text = "HighScore: "+MenuManager.Instance.highScore;
+    }
+
+    void checkHighScore(){
+        int highscore = MenuManager.Instance.highScore;
+        if(m_Points > highscore){
+            MenuManager.Instance.highScore = m_Points;
+            //store the name of player with high score
+        }
+        MenuManager.Instance.StoreData();
     }
 }
