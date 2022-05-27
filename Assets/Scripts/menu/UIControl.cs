@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class UIControl : MonoBehaviour
 {
@@ -20,4 +22,14 @@ public class UIControl : MonoBehaviour
         MenuManager.Instance.StoreData();
         SceneManager.LoadScene(1);
     }
+
+    public void Quit(){
+        MenuManager.Instance.StoreData();
+        #if UNITY_EDITOR
+                EditorApplication.ExitPlaymode();
+        #else
+                Application.Quit();
+        #endif
+    }
+    
 }
