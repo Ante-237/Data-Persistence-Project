@@ -15,12 +15,12 @@ public class leaderboardsUI : MonoBehaviour
     }
 
     void DisplayAll(){
-        List<string> tempName = MenuManager.Instance.Names;
-        List<int> tempScore = MenuManager.Instance.scores;
+      //  List<string> tempName = MenuManager.Instance.Names;
+       // List<int> tempScore = MenuManager.Instance.scores;
         //int listCount = tempName.Count;
-        foreach(string name in tempName){
-            nameText.text = ""+name + "\n";
-        }
+        //incomplete 
+
+        nameText.text = ""+MenuManager.Instance.highPlayer+ "\t\t\t" + MenuManager.Instance.highScore;
         
 
     }

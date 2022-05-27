@@ -77,7 +77,7 @@ public class MainManager : MonoBehaviour
         ScoreText.text = $"Score : {m_Points}";
         int presentHigh = MenuManager.Instance.highScore;
         if(m_Points > presentHigh){
-            highScoreText.text = $"HighScore: {presentHigh}";
+            highScoreText.text =  $"Score : {MenuManager.Instance.highScore}";
             NameText.text = "Name: "+ MenuManager.Instance.highPlayer;
         }
     }
@@ -85,7 +85,7 @@ public class MainManager : MonoBehaviour
     public void GameOver()
     { 
      checkHighScore();
-       AddPlayerToboard();
+      // AddPlayerToboard();
       
        // MenuManager.Instance.saveData();
         m_GameOver = true;
@@ -94,13 +94,13 @@ public class MainManager : MonoBehaviour
 
     void addScoreAndName(){
         MenuManager.Instance.LoadData();
-        if(MenuManager.Instance.highScore == 0){
+        if(MenuManager.Instance.highScore < 1){
             NameText.text = "Name:" + MenuManager.Instance.playerName;
         }else{
             NameText.text = "Name:" + MenuManager.Instance.highPlayer;
         }
         
-        highScoreText.text = "HighScore: "+MenuManager.Instance.highScore;
+        highScoreText.text =  $"Score : {MenuManager.Instance.highScore}";
     }
 
     void checkHighScore(){
@@ -112,9 +112,10 @@ public class MainManager : MonoBehaviour
         }
         MenuManager.Instance.StoreData();
     }
-
+/*
     void AddPlayerToboard(){
         MenuManager.Instance.scores.Add(m_Points);
         MenuManager.Instance.Names.Add(MenuManager.Instance.playerName);
     }
+    */
 }

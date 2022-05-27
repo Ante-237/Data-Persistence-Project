@@ -11,8 +11,8 @@ public class MenuManager : MonoBehaviour
     public string highPlayer;
     public int highScore;
     public float playerSpeed;
-    public List<string> Names = new List<string>();
-    public List<int> scores = new List<int>();
+   // public List<string> Names = new List<string>();
+   // public List<int> scores = new List<int>();
 
     [System.Serializable]
     class SaveData{
@@ -20,8 +20,8 @@ public class MenuManager : MonoBehaviour
         public int highScore;
         public string highPlayer;
         public float playerSpeed;
-        public List<string> Names = new List<string>();
-        public List<int> scores = new List<int>();
+       // public List<string> Names = new List<string>();
+       // public List<int> scores = new List<int>();
     }
 
     public void StoreData(){
@@ -30,8 +30,8 @@ public class MenuManager : MonoBehaviour
         data.highScore = highScore;
         data.highPlayer = highPlayer;
         data.playerSpeed = playerSpeed;
-        data.Names = Names;
-        data.scores = scores;
+        //data.Names = Names;
+        //data.scores = scores;
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/saveData.json", json);
 
@@ -46,8 +46,8 @@ public class MenuManager : MonoBehaviour
             highScore = data.highScore;
             highPlayer = data.highPlayer;
             playerSpeed = data.playerSpeed;
-            scores = data.scores;
-            Names = data.Names;
+           // scores = data.scores;
+           // Names = data.Names;
         }
     }
 
