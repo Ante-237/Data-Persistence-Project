@@ -63,6 +63,7 @@ public class MainManager : MonoBehaviour
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }else if(Input.GetKeyDown(KeyCode.Q)){
+                MenuManager.Instance.StoreData();
                 SceneManager.LoadScene(0);
             }
         }
@@ -75,6 +76,7 @@ public class MainManager : MonoBehaviour
         int presentHigh = MenuManager.Instance.highScore;
         if(m_Points > presentHigh){
             highScoreText.text = $"HighScore: {presentHigh}";
+            NameText.text = "Name: "+ MenuManager.Instance.highPlayer;
         }
     }
 
@@ -88,7 +90,12 @@ public class MainManager : MonoBehaviour
 
     void addScoreAndName(){
         MenuManager.Instance.LoadData();
-        NameText.text = "Name:" + MenuManager.Instance.playerName;
+        if(MenuManager.Instance.highScore == 0){
+            NameText.text = "Name:" + MenuManager.Instance.playerName;
+        }else{
+            NameText.text = "Name:" + MenuManager.Instance.highPlayer;
+        }
+        
         highScoreText.text = "HighScore: "+MenuManager.Instance.highScore;
     }
 
@@ -96,6 +103,7 @@ public class MainManager : MonoBehaviour
         int highscore = MenuManager.Instance.highScore;
         if(m_Points > highscore){
             MenuManager.Instance.highScore = m_Points;
+            MenuManager.Instance.highPlayer = MenuManager.Instance.playerName;
             //store the name of player with high score
         }
         MenuManager.Instance.StoreData();

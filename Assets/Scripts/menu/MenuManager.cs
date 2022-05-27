@@ -8,18 +8,21 @@ public class MenuManager : MonoBehaviour
     public static MenuManager Instance;
 
     public string playerName;
+    public string highPlayer;
     public int highScore;
 
     [System.Serializable]
     class SaveData{
         public string playerName;
         public int highScore;
+        public string highPlayer;
     }
 
     public void StoreData(){
         SaveData data = new SaveData();
         data.playerName = playerName;
         data.highScore = highScore;
+        data.highPlayer = highPlayer;
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/saveData.json", json);
 
@@ -32,6 +35,7 @@ public class MenuManager : MonoBehaviour
             SaveData data = JsonUtility.FromJson<SaveData>(json);
             playerName = data.playerName;
             highScore = data.highScore;
+            highPlayer = data.highPlayer;
         }
     }
 
