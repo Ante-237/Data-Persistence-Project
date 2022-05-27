@@ -14,6 +14,7 @@ public class MainManager : MonoBehaviour
     public Text NameText;
     public Text highScoreText;
     public GameObject GameOverText;
+ 
     
     private bool m_Started = false;
     private int m_Points;
@@ -25,6 +26,7 @@ public class MainManager : MonoBehaviour
     void Start()
     {
         addScoreAndName();
+        
        
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
@@ -81,8 +83,10 @@ public class MainManager : MonoBehaviour
     }
 
     public void GameOver()
-    {
-       checkHighScore();
+    { 
+     checkHighScore();
+       AddPlayerToboard();
+      
        // MenuManager.Instance.saveData();
         m_GameOver = true;
         GameOverText.SetActive(true);
@@ -107,5 +111,10 @@ public class MainManager : MonoBehaviour
             //store the name of player with high score
         }
         MenuManager.Instance.StoreData();
+    }
+
+    void AddPlayerToboard(){
+        MenuManager.Instance.scores.Add(m_Points);
+        MenuManager.Instance.Names.Add(MenuManager.Instance.playerName);
     }
 }
