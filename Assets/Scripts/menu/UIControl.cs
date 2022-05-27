@@ -16,11 +16,22 @@ public class UIControl : MonoBehaviour
         Debug.Log(MenuManager.Instance.playerName);
     }
     
+    public void startLeaderBoard()
+    {
+        MenuManager.Instance.StoreData();
+        SceneManager.LoadScene(3);
+    }
 
 
     public void StartMain(){
         MenuManager.Instance.StoreData();
         SceneManager.LoadScene(1);
+    }
+
+    public void startSettings(){
+        MenuManager.Instance.StoreData();
+    
+        SceneManager.LoadScene(2);
     }
 
     public void Quit(){
